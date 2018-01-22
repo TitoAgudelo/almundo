@@ -2,27 +2,27 @@ var router = require('express').Router();
 var four0four = require('./utils/404')();
 var data = require('./data');
 
-router.get('/people', getPeople);
-router.get('/person/:id', getPerson);
+router.get('/hotels', getHotels);
+router.get('/hotel/:id', getHotel);
 router.get('/*', four0four.notFoundMiddleware);
 
 module.exports = router;
 
 //////////////
 
-function getPeople(req, res, next) {
-  res.status(200).send(data.people);
+function getHotels(req, res, next) {
+  res.status(200).send(data.hotels);
 }
 
-function getPerson(req, res, next) {
+function getHotel(req, res, next) {
   var id = +req.params.id;
-  var person = data.people.filter(function(p) {
+  var hotel = data.hotels.filter(function(p) {
     return p.id === id;
   })[0];
 
-  if (person) {
-    res.status(200).send(person);
+  if (hotel) {
+    res.status(200).send(hotel);
   } else {
-    four0four.send404(req, res, 'person ' + id + ' not found');
+    four0four.send404(req, res, 'hotel ' + id + ' not found');
   }
 }

@@ -75,10 +75,12 @@ input[type="radio"], input[type="checkbox"] {
 
 body {
     font-size: 13px;
+    font-family: 'Lato', sans-serif;
     line-height: 23px;
     color: #666;
     background: #111;
-    padding-top: 45px;
+    background-color: #f4f4f4;
+    padding-top: 90px;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -118,11 +120,6 @@ h5 {
 h6 {
     font-size: 15px;
     line-height: 25px;
-}
-
-p {
-    padding: 1px 0 !important;
-    margin: 1px 0 !important;
 }
 
 a {
@@ -529,7 +526,15 @@ form {
 /* Navbar */
 
 .navbar {
-    background: #000;
+    background: #1f4985;
+    background-color: #1f4985;
+    height: 90px;
+
+    .navbar-header {
+      align-items: center;
+      display: flex;
+      height: 100%;
+    }
 }
 
     .navbar .container {
@@ -791,10 +796,8 @@ form {
 
 .mainbar {
     position: relative;
-    margin-left: 230px;
     margin-right: 0;
     width: auto;
-    background: #fff;
     min-height: 900px;
 }
 
@@ -841,7 +844,7 @@ form {
 
 .mainbar .matter {
     border-top: 0px solid #ddd;
-    margin: 2em;
+    margin: 2em 0;
 }
 
 /* Widget */
@@ -1236,10 +1239,6 @@ form {
     .sidebar {
         width: 200px;
     }
-
-    .mainbar {
-        margin-left: 200px;
-    }
 }
 
 /*#region Widgets */
@@ -1312,12 +1311,9 @@ form {
 /*For Bootstrap 3*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-body {
-    background-color: #FFF;
-}
-
 .navbar-inverse {
-    background-color: #333;
+    background-color: #334a84;
+    border: 0;
 }
 
 .sidebar-widget form {
@@ -1521,9 +1517,10 @@ small {
 }
 
 .navbar .navbar-brand {
-    /*background: url(../images/gg.png) no-repeat left top !important;*/
+    display: flex;
+    align-items: center;
     margin: 0 1em;
-    height: 45px;
+    height: 100%;
 }
 
 .navbar .brand-title {
@@ -1947,3 +1944,6 @@ a {
 }
 
 /*#endregion */
+
+/* import section */
+@import "./../app/dashboard/dashboard";

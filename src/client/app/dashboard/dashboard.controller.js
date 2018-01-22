@@ -16,27 +16,36 @@
     vm.messageCount = 0;
     vm.people = [];
     vm.title = 'Dashboard';
-
+    vm.getNumber = getNumber;
+    vm.searchToggle = searchToggle;
+    vm.starToggle = starToggle;
+    vm.search = true;
+    vm.star = true;
     activate();
 
+    function searchToggle() {
+      vm.search = vm.search === true ? false : true;
+    }
+
+    function starToggle() {
+      vm.star = vm.star === true ? false : true;
+    }
+
+    function getNumber(num) {
+      return new Array(num);
+    }
+
     function activate() {
-      var promises = [getMessageCount(), getPeople()];
+      var promises = [getHotels()];
       return $q.all(promises).then(function() {
-        logger.info('Activated Dashboard View');
+        logger.info('Activated Hotels View');
       });
     }
 
-    function getMessageCount() {
-      return dataservice.getMessageCount().then(function(data) {
-        vm.messageCount = data;
-        return vm.messageCount;
-      });
-    }
-
-    function getPeople() {
-      return dataservice.getPeople().then(function(data) {
-        vm.people = data;
-        return vm.people;
+    function getHotels() {
+      return dataservice.getHotels().then(function(data) {
+        vm.hotels = data;
+        return vm.hotels;
       });
     }
   }

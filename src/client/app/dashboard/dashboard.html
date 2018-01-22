@@ -1,69 +1,86 @@
 <section id="dashboard-view" class="mainbar">
   <section class="matter">
-    <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <ul class="today-datas">
-            <li class="blightblue">
-              <div class="pull-left"><i class="fa fa-plane"></i></div>
-              <div class="datas-text pull-right">
-                <span class="bold">May 18 - 19, 2015</span> Castle Resort, Neverland
-              </div>
-              <div class="clearfix"></div>
-            </li>
-
-            <li class="borange">
-              <div class="pull-left"><i class="fa fa-envelope"></i></div>
-              <div class="datas-text pull-right">
-                <span class="bold">{{vm.messageCount}}</span> Messages
-              </div>
-              <div class="clearfix"></div>
-            </li>
-
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="widget wviolet">
-            <div ht-widget-header title="People" allow-collapse="true"></div>
-            <div class="widget-content text-center text-info">
-              <table class="table table-condensed table-striped">
-                <thead>
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Age</th>
-                    <th>Location</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="p in vm.people">
-                    <td>{{p.firstName}}</td>
-                    <td>{{p.lastName}}</td>
-                    <td>{{p.age}}</td>
-                    <td>{{p.location}}</td>
-                  </tr>
-                </tbody>
-              </table>
+        <div class="col-xs-12 col-md-3">
+          <div class="filter">
+            <div class="filter-title">
+              <p>Filtros</p>
             </div>
-            <div class="widget-foot">
-              <div class="clearfix"></div>
+            <div class="filter-search">
+              <div class="filter-search-head">
+                <div class="filter-search-head-title">
+                  <span class="filter-search-head-title-icon"></span>
+                  <span class="filter-search-head-title-title">Nombre del hotel</span>
+                  <span class="filter-search-head-title-close-up" data-ng-if="vm.search" data-ng-model="vm.search" data-ng-click="vm.searchToggle()"></span>
+                  <span class="filter-search-head-title-close-down" data-ng-if="!vm.search" data-ng-model="vm.search" data-ng-click="vm.searchToggle()"></span>
+                </div>
+                <div class="filter-search-head-content" data-ng-show="vm.search">
+                  <input class="filter-search-head-content-inp" type="text" placeholder="Ingrese el nombre del hotel">
+                  <button class="filter-search-head-content-btn">Aceptar</button>
+                </div>
+              </div>
+              <div class="filter-search-body">
+                <div class="filter-search-body-title">
+                  <span class="filter-search-body-title-icon"></span>
+                  <span class="filter-search-body-title-title">Estrellas</span>
+                  <span class="filter-search-body-title-close-up" data-ng-if="vm.star" data-ng-model="vm.star" data-ng-click="vm.starToggle()"></span>
+                  <span class="filter-search-body-title-close-down" data-ng-if="!vm.star" data-ng-model="vm.star" data-ng-click="vm.starToggle()"></span>
+                </div>
+                <div class="filter-search-body-content" data-ng-show="vm.star">
+                  <div class="filter-search-body-content-item">
+                    <input type="checkbox">
+                    <span class="filter-search-body-content-item-all">Todas las estrellas</span>
+                  </div>
+                  <div class="filter-search-body-content-item">
+                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(5) track by $index"></span>
+                  </div>
+                  <div class="filter-search-body-content-item">
+                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(4) track by $index"></span>
+                  </div>
+                  <div class="filter-search-body-content-item">
+                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(3) track by $index"></span>
+                  </div>
+                  <div class="filter-search-body-content-item">
+                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(2) track by $index"></span>
+                  </div>
+                  <div class="filter-search-body-content-item">
+                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(1) track by $index"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter-stars"></div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-9">
+          <div class="hotel-item" data-ng-repeat="item in vm.hotels">
+            <div class="hotel-item-image">
+              <img data-ng-src="/images/hotels/{{item.image}}"/>
+            </div>
+            <div class="hotel-item-info">
+              <div class="hotel-item-info-title">{{item.name}}</div>
+              <div class="hotel-item-info-stars"><span class="hotel-item-info-stars-item" data-ng-repeat="i in vm.getNumber(item.stars) track by $index"></span></div>
+              <div class="hotel-item-info-social">
+                <span class="hotel-item-info-social-item" data-ng-repeat="social in item.amenities"><img data-ng-src="/images/icons/amenities/{{social}}.svg" /></span>
+              </div>
+            </div>
+            <div class="hotel-item-detail">
+              <div class="hotel-item-detail-title"><p>Precio por noche por<br /> habitación</p></div>
+              <div class="hotel-item-detail-price">
+                <span class="hotel-item-detail-price-type">ARS</span>
+                <span class="hotel-item-detail-price-count">{{item.price}}</span>
+              </div>
+              <div class="hotel-item-detail-show">
+                <button class="hotel-item-detail-show-btn">Ver Hotel</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="widget wgreen">
-            <div ht-widget-header title="{{vm.news.title}}" allow-collapse="true"></div>
-            <div class="widget-content text-center text-info">
-              <small>{{vm.news.description}}</small>
-            </div>
-            <div class="widget-foot">
-              <div class="clearfix"></div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
   </section>
 </section>

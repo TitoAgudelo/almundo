@@ -9,16 +9,13 @@
   /* @ngInject */
   function dataservice($http, $q, exception, logger) {
     var service = {
-      getPeople: getPeople,
-      getMessageCount: getMessageCount
+      getHotels: getHotels
     };
 
     return service;
 
-    function getMessageCount() { return $q.when(72); }
-
-    function getPeople() {
-      return $http.get('/api/people')
+    function getHotels() {
+      return $http.get('/api/hotels')
         .then(success)
         .catch(fail);
 
@@ -27,7 +24,7 @@
       }
 
       function fail(e) {
-        return exception.catcher('XHR Failed for getPeople')(e);
+        return exception.catcher('XHR Failed for getHotels')(e);
       }
     }
   }

@@ -26,7 +26,6 @@
         &-title {
           align-items: center;
           display: flex;
-          margin-bottom: 15px;
 
           &-icon {
             -webkit-mask-image: url('/images/icons/filters/search.svg');
@@ -67,9 +66,18 @@
 
         &-content {
           display: flex;
+          margin-top: 15px;
+
+          @media screen and (max-width: 1200px) {
+            flex-flow: column;
+          }
 
           &-inp {
             width: 170px;
+
+            @media screen and (max-width: 1200px) {
+              width: 100%;
+            }
           }
 
           &-btn {
@@ -81,6 +89,10 @@
             font-weight: bold;
             margin-left: auto;
 
+            @media screen and (max-width: 1200px) {
+              margin-left: 0;
+              margin-top: 2rem;
+            }
           }
         }
       }
@@ -140,6 +152,11 @@
             display: flex;
             padding: 10px 0;
 
+            &-all {
+              color: #444444;
+              font-weight: bold;
+            }
+
             &-inp {
               cursor: pointer;
             }
@@ -165,10 +182,18 @@
     margin-bottom: 18px;
     padding: 10px;
 
+    @media screen and (max-width: 1200px) {
+      flex-flow: column;
+    }
+
     &-image {
       img {
         height: 220px;
         width: 335px;
+      }
+
+      @media screen and (max-width: 1200px) {
+        margin-bottom: 40px;
       }
     }
 
@@ -217,6 +242,14 @@
       margin-left: auto;
       padding: 0 40px;
       text-align: center;
+
+      @media screen and (max-width: 1200px) {
+        border-left: 0;
+        border-top: 1px dashed #cccccc;
+        margin-left: 0;
+        margin-top: 40px;
+        padding: 40px;
+      }
 
       &-title {
         p {

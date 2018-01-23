@@ -1,7 +1,7 @@
 <section id="dashboard-view" class="mainbar">
   <section class="matter">
       <div class="row">
-        <div class="col-xs-12 col-md-3">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
           <div class="filter">
             <div class="filter-title">
               <p>Filtros</p>
@@ -15,8 +15,8 @@
                   <span class="filter-search-head-title-close-down" data-ng-if="!vm.search" data-ng-model="vm.search" data-ng-click="vm.searchToggle()"></span>
                 </div>
                 <div class="filter-search-head-content" data-ng-show="vm.search">
-                  <input class="filter-search-head-content-inp" type="text" placeholder="Ingrese el nombre del hotel">
-                  <button class="filter-search-head-content-btn">Aceptar</button>
+                  <input data-ng-model="vm.filters.name" class="filter-search-head-content-inp" type="text" placeholder="Ingrese el nombre del hotel">
+                  <button class="filter-search-head-content-btn" data-ng-click="vm.filtering()">Aceptar</button>
                 </div>
               </div>
               <div class="filter-search-body">
@@ -28,27 +28,27 @@
                 </div>
                 <div class="filter-search-body-content" data-ng-show="vm.star">
                   <div class="filter-search-body-content-item">
-                    <input type="checkbox">
+                    <input class="filter-search-body-content-item-inp" type="checkbox" data-ng-model="vm.filters.allstar" data-ng-change="vm.resetFiltering()">
                     <span class="filter-search-body-content-item-all">Todas las estrellas</span>
                   </div>
                   <div class="filter-search-body-content-item">
-                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <input class="filter-search-body-content-item-inp" type="checkbox" data-ng-model="vm.filters.fivestar" data-ng-change="vm.filtering()">
                       <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(5) track by $index"></span>
                   </div>
                   <div class="filter-search-body-content-item">
-                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <input class="filter-search-body-content-item-inp" type="checkbox" data-ng-model="vm.filters.fourstar" data-ng-change="vm.filtering()">
                       <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(4) track by $index"></span>
                   </div>
                   <div class="filter-search-body-content-item">
-                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <input class="filter-search-body-content-item-inp" type="checkbox" data-ng-model="vm.filters.threestar" data-ng-change="vm.filtering()">
                       <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(3) track by $index"></span>
                   </div>
                   <div class="filter-search-body-content-item">
-                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <input class="filter-search-body-content-item-inp" type="checkbox" data-ng-model="vm.filters.twostar" data-ng-change="vm.filtering()">
                       <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(2) track by $index"></span>
                   </div>
                   <div class="filter-search-body-content-item">
-                      <input class="filter-search-body-content-item-inp" type="checkbox">
+                      <input class="filter-search-body-content-item-inp" type="checkbox" data-ng-model="vm.filters.onestar" data-ng-change="vm.filtering()">
                       <span class="filter-search-body-content-item-stars" data-ng-repeat="i in vm.getNumber(1) track by $index"></span>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
             <div class="filter-stars"></div>
           </div>
         </div>
-        <div class="col-xs-12 col-md-9">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
           <div class="hotel-item" data-ng-repeat="item in vm.hotels">
             <div class="hotel-item-image">
               <img data-ng-src="/images/hotels/{{item.image}}"/>
